@@ -16,7 +16,7 @@
 host = "64.227.125.242"
 username = "redwood"
 agentForward = true
-sides = ["api","web"]
+sides = ["api"]
 packageManagerCommand = "yarn"
 monitorCommand = "pm2"
 path = "/var/www/rwblog"
