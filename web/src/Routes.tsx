@@ -6,7 +6,11 @@ import BlogLayout from './layouts/BlogLayout/BlogLayout'
 const Routes = () => {
   return (
     <Router>
-      <Private unauthenticated="home">
+      <Route path="/login" page={LoginPage} name="login" />
+      <Route path="/signup" page={SignupPage} name="signup" />
+      <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
+      <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
+      <Private unauthenticated="login">
         <Set wrap={PostsLayout}>
           <Route path="/admin/posts/new" page={PostNewPostPage} name="newPost" />
           <Route path="/admin/posts/{id}/edit" page={PostEditPostPage} name="editPost" />
