@@ -3,21 +3,29 @@ import { format } from 'date-fns'
 
 import type { Post } from 'types/graphql'
 
-interface Props {
-  article: Post
+const truncate = (text: string, length: number) => {
+  if (text && text.length > length) {
+    return text.substring(0, length) + '...'
+  }
+
+  return text
 }
 
-const Article = ({ article }: Props) => {
+interface Props {
+  article: Post
+  summary?: boolean
+}
+
+const Article = ({ article, summary = false }: Props) => {
   return (
-    <article>
+    <article className="mt-10">
       <header>
-        <h2>
+        <h2 className="text-xl font-semibold text-blue-700">
           <Link to={routes.article({ id: article.id })}>{article.title}</Link>
         </h2>
       </header>
-      <div>{article.body}</div>
-      <div>
-        Posted at: {format(new Date(article.createdAt), 'MMMM dd, HH:mm')}
+      <div className="mt-2 font-light text-gray-900">
+        {summary ? truncate(article.body, 100) : article.body}
       </div>
     </article>
   )
