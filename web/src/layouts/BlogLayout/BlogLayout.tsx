@@ -1,5 +1,6 @@
 import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
+import { Toaster } from '@redwoodjs/web/dist/toast'
 
 type BlogLayoutProps = {
   children?: React.ReactNode
@@ -10,6 +11,8 @@ const BlogLayout = ({ children }: BlogLayoutProps) => {
 
   return (
     <>
+      <Toaster />
+
       <header className="relative items-center justify-between bg-blue-700 py-4 px-8 text-white sm:flex">
         <h1 className="text-5xl font-semibold tracking-tight">
           <Link

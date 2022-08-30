@@ -10,7 +10,7 @@ import {
   useForm,
 } from '@redwoodjs/forms'
 import { useMutation } from '@redwoodjs/web'
-import { toast, Toaster } from '@redwoodjs/web/toast'
+import { toast } from '@redwoodjs/web/toast'
 
 const CREATE_CONTACT = gql`
   mutation CreateContactMutation($input: CreateContactInput!) {
@@ -39,7 +39,6 @@ const ContactPage = () => {
     <>
       <MetaTags title="Contact" description="Contact page" />
 
-      <Toaster />
       <Form
         onSubmit={onSubmit}
         config={{ mode: 'onBlur' }}

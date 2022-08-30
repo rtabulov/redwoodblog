@@ -10467,6 +10467,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cuid@npm:^2.1.8":
+  version: 2.1.8
+  resolution: "cuid@npm:2.1.8"
+  checksum: 6514d247c6de3e5cd32f485821365f4816ee14b777841fa717d37b7a8f791f3cb268be9e37ca54b110f6f5f625e4f0af581c3226aa14f259790539ba20fdaf61
+  languageName: node
+  linkType: hard
+
 "currently-unhandled@npm:^0.4.1":
   version: 0.4.1
   resolution: "currently-unhandled@npm:0.4.1"
@@ -24129,6 +24136,7 @@ __metadata:
     "@redwoodjs/router": ^2.2.3
     "@redwoodjs/web": ^2.2.3
     autoprefixer: ^10.4.8
+    cuid: ^2.1.8
     date-fns: ^2.29.2
     postcss: ^8.4.16
     postcss-loader: ^7.0.1

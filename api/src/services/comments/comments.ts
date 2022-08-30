@@ -3,8 +3,11 @@ import type { Prisma } from '@prisma/client'
 
 import { db } from 'src/lib/db'
 
-export const comments: QueryResolvers['comments'] = () => {
-  return db.comment.findMany()
+export const comments: QueryResolvers['comments'] = ({ postId }) => {
+  return db.comment.findMany({
+    where: { postId },
+    orderBy: { createdAt: 'desc' },
+  })
 }
 
 export const Comment: CommentResolvers = {
