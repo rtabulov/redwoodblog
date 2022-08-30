@@ -24,7 +24,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(searchObject.redirectTo)
+      navigate(searchObject.redirectTo || routes.home())
     }
   }, [isAuthenticated])
 

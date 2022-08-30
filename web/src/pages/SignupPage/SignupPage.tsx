@@ -23,7 +23,7 @@ const SignupPage = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(searchObject.redirectTo)
+      navigate(searchObject.redirectTo || routes.home())
     }
   }, [isAuthenticated])
 
@@ -35,6 +35,7 @@ const SignupPage = () => {
 
   const onSubmit = async (data) => {
     const response = await signUp({ ...data })
+    console.log(response)
 
     if (response.message) {
       toast(response.message)

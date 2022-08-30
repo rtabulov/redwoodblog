@@ -9,15 +9,34 @@ export default async () => {
     //
     // Update "const data = []" to match your data model and seeding needs
     //
-    const data: Prisma.UserExampleCreateArgs['data'][] = [
-      // To try this example data with the UserExample model in schema.prisma,
-      // uncomment the lines below and run 'yarn rw prisma migrate dev'
-      //
-      // { name: 'alice', email: 'alice@example.com' },
-      // { name: 'mark', email: 'mark@example.com' },
-      // { name: 'jackie', email: 'jackie@example.com' },
-      // { name: 'bob', email: 'bob@example.com' },
-    ]
+    const data: {
+      users: Prisma.UserCreateArgs['data'][]
+      posts: Prisma.PostCreateArgs['data'][]
+    } = {
+      users: [
+        {
+          email: 'rtabulov',
+          hashedPassword:
+            '8c2c6f3caedf657a2d833bbd59589581a0552bbfc074b921520129d1dd80e72e',
+          salt: 'eb7aaf3fd784b3cb57e937681911692b',
+        },
+      ],
+      posts: [
+        {
+          title: "I'm baby you",
+          body: "I'm baby you probably haven't heard of them squid DIY, glossier letterpress butcher asymmetrical sriracha. Cold-pressed mixtape DSA tattooed waistcoat shaman enamel pin slow-carb gentrify. Church-key vibecession shoreditch, mumblecore sustainable chillwave meh. Authentic kale chips gatekeep drinking vinegar cloud bread ascot yr next level woke. Snackwave shaman wolf, microdosing slow-carb poke trust fund plaid praxis YOLO pop-up.",
+        },
+        {
+          title: "I'm baby wolf",
+          body: "I'm baby wolf messenger bag pickled vexillologist. Listicle plaid letterpress, polaroid sustainable iceland knausgaard kale chips gentrify everyday carry XOXO tacos migas cronut green juice. Church-key tilde chicharrones single-origin coffee fashion axe, brunch williamsburg semiotics poke lyft typewriter art party actually 90's. Helvetica art party tofu man braid ramps skateboard slow-carb, actually 90's leggings tilde four loko yr YOLO gluten-free. Pabst lyft palo santo you probably haven't heard of them, kombucha vaporware craft beer whatever kogi put a bird on it. You probably haven't heard of them wolf skateboard tattooed fingerstache. XOXO hella fixie swag, snackwave mlkshk franzen kinfolk praxis flannel.",
+        },
+        {
+          title: "I'm baby jOMO",
+          body: "I'm baby jOMO pickled hoodie actually selfies wolf. Vice single-origin coffee 90's, mukbang typewriter activated charcoal slow-carb aesthetic ethical hexagon chartreuse hella kinfolk art party. Austin gastropub migas yr four dollar toast same drinking vinegar tilde +1 yuccie. Lomo DIY Brooklyn poutine iceland. Cred chia cliche hammock single-origin coffee kitsch kinfolk yuccie leggings. Banjo 3 wolf moon bushwick vice glossier etsy, distillery fanny pack drinking vinegar lumbersexual.",
+        },
+      ],
+    }
+
     console.log(
       "\nUsing the default './scripts/seed.{js,ts}' template\nEdit the file to add seed data\n"
     )
@@ -28,10 +47,20 @@ export default async () => {
       //
       // Change to match your data model and seeding needs
       //
-      data.map(async (data: Prisma.UserExampleCreateArgs['data']) => {
-        const record = await db.userExample.create({ data })
-        console.log(record)
-      })
+      [
+        ...data.users.map(async (data) => {
+          const record = await db.user.upsert({
+            where: { email: data.email },
+            update: data,
+            create: data,
+          })
+          console.log(record)
+        }),
+        ...data.posts.map(async (data) => {
+          const record = await db.post.create({ data })
+          console.log(record)
+        }),
+      ]
     )
   } catch (error) {
     console.warn('Please define your seed data.')

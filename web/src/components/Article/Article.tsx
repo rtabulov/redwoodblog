@@ -1,5 +1,5 @@
 import { Link, routes } from '@redwoodjs/router'
-import { format } from 'date-fns'
+import CommentsCell from 'src/components/CommentsCell'
 
 import type { Post } from 'types/graphql'
 
@@ -27,6 +27,11 @@ const Article = ({ article, summary = false }: Props) => {
       <div className="mt-2 font-light text-gray-900">
         {summary ? truncate(article.body, 100) : article.body}
       </div>
+      {!summary && (
+        <div className="mt-12">
+          <CommentsCell />
+        </div>
+      )}
     </article>
   )
 }
