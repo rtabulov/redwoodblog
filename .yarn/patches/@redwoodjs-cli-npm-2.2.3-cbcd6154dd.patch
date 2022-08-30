@@ -1,0 +1,13 @@
+diff --git a/dist/commands/deploy/baremetal.js b/dist/commands/deploy/baremetal.js
+index 4f918b2aef8e5b47110b219a01443d0db8e014e5..b40046678305f7a0f1f6d7a0c77f005c36ae62f9 100644
+--- a/dist/commands/deploy/baremetal.js
++++ b/dist/commands/deploy/baremetal.js
+@@ -558,7 +558,7 @@ const commands = (yargs, ssh) => {
+         host: serverConfig.host,
+         username: serverConfig.username,
+         password: serverConfig.password,
+-        privateKey: serverConfig.privateKey,
++        privateKeyPath: serverConfig.privateKey,
+         passphrase: serverConfig.passphrase,
+         agent: serverConfig.agentForward && process.env.SSH_AUTH_SOCK,
+         agentForward: serverConfig.agentForward

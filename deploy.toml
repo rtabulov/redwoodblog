@@ -14,8 +14,8 @@
 
 [[production.servers]]
 host = "64.227.125.242"
-port = 22
 username = "redwood"
+privateKey = "/home/rassul/.ssh/id_rsa"
 agentForward = false
 sides = ["api", "web"]
 path = "/var/www/rwblog"
